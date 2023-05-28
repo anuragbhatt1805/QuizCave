@@ -26,7 +26,7 @@ You can access [QuizCave app](https://quizcave.codewithbhatt.com)
  - HTML
  - CSS (Bootstrap 5.2)
  - JS (ReactJS)
- - 
+
 **Backend**
  - Python (Django)
  - Django Rest Framework
