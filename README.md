@@ -24,6 +24,8 @@ You can access [QuizCave app](https://quizcave.codewithbhatt.com)
 
 Roadmap: [QuizCave Octopus.do](https://octopus.do/y8ep6pnk9pm)
 
+Database Design: [QuizCave Miro](https://miro.com/app/board/uXjVMDgOVXk=/?share_link_id=606177614208)
+
 ### Technologies:
 
 **Frontend**
@@ -37,7 +39,7 @@ Roadmap: [QuizCave Octopus.do](https://octopus.do/y8ep6pnk9pm)
 
 **Database**
  - SQlite
- - MongoDB (Cosmos DB)
+ - MongoDB (Azure Cosmos DB)
 
 **Deployment**
  - API on Docker Container
