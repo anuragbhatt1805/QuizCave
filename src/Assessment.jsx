@@ -43,6 +43,7 @@ export function Assessment({ contest, result }) {
                   TimeLeft: 
                 </span>
                 <Counterdown duration={contest?.duration} onCountdownEnd={()=> {
+                    setNext(contest?.questions?.length);
                     alert("Time Over!");
                 }}/>
             </div>
