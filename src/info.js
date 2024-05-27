@@ -45,7 +45,6 @@ export const contest = {
         {
             "_id":"665447a93ec3bcbbee4fbc60",
             "question": "Write Answer for following Questions?",
-            "questionImage":"src/assets/picture.jpg",
             "type":"multiple",
             "mcqOptions": [],
             "multipleQuestion":[
