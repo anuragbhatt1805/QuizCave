@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 export const Question = ({ Question, number, setNext, result, appeared }) => {
+    const [answered, setAnswered] = useState(false);
+
   return (
     <>
       <div className="h-[80vh] w-full">
@@ -23,6 +27,10 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
                     <input
                         type="text"
                         placeholder="Answer"
+                        onChange={(e) => {
+                            e.preventDefault();
+                            setAnswered(true);
+                        }}
                         className="border-2 border-gray-300 rounded-lg p-2 w-1/3 my-5"
                     />
                 </>
@@ -33,6 +41,10 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
                 <>
                     <textarea
                         placeholder="Answer"
+                        onChange={(e) => {
+                            e.preventDefault();
+                            setAnswered(true);
+                        }}
                         className="border-2 border-gray-300 rounded-lg p-2 w-1/3 h-1/3 my-5 mx-10"
                     />
                 </>
@@ -47,6 +59,10 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
                             <input
                                 type="text"
                                 placeholder={`Answer for ${option}`}
+                                onChange={(e) => {
+                                    e.preventDefault();
+                                    setAnswered(true);
+                                }}
                                 className="border-2 border-gray-300 rounded-lg p-2 my-5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                             />
                         </div>
@@ -63,6 +79,10 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
                                 <input
                                     type="radio"
                                     name="mcq"
+                                    onChange={(e) => {
+                                        e.preventDefault();
+                                        setAnswered(true);
+                                    }}
                                     id={index}
                                     className="w-5 h-5 mx-4"
                                 />
@@ -84,7 +104,7 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
             e.preventDefault();
             setNext((prev) => prev + 1);
             appeared((prev) => {
-                prev[number-1] = true;
+                prev[number-1] = answered;
                 return [...prev];
             });
         }}>
