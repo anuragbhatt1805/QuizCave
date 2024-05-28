@@ -59,7 +59,7 @@ export const AssessmentPage = ({contest, result}) => {
               Question={contest?.questions[next]}
               number={next + 1}
               setNext={setNext}
-              result={result._id}
+              result={result}
               appeared={setQuestionAppear}
             />
           </div>

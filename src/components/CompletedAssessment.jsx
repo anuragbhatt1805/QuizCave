@@ -1,6 +1,28 @@
 import "./style/complete.css";
 
 export const CompletedAssessment = ({result, contest}) => {
+    const handleSubmit = async () => {
+        const myHeader = new Headers();
+        myHeader.append("Content-Type", "application/json");
+        myHeader.append("Authorization", `Bearer ${localStorage.getItem("access")}`);
+
+        const requestOptions = {
+            method: "POST",
+            headers: myHeader,
+            request: "follow"
+        }
+
+        alert("You answers are successfully submitted.\nYou will be notified when results are declared")
+        window.location.reload();
+
+        // const response = await fetch(`https://wbt-quizcave.onrender.com/api/v1/result/submit/${result._id}`, requestOptions);
+        // const data = await response.json();
+        // console.log(data);
+        // if(data.status === 200) {
+        //     window.location.href = "/";
+        // }
+    }
+
     return (
         <>
             <div className="flex flex-col justify-center items-center my-20">
@@ -15,8 +37,7 @@ export const CompletedAssessment = ({result, contest}) => {
                 <button className="bg-[#6adb45] text-5xl font-mono font-semi-bold px-12 py-4 rounded-2xl border-2 hover:border-[#6adb45] hover:bg-white hover:text-[#6adb45] text-white"
                 onClick={(e) => {
                     e.preventDefault();
-                    alert("You answers are successfully submitted.\nYou will be notified when results are declared")
-                    window.location.reload();
+                    handleSubmit();
                 }}>Submit</button>
             </div>
             </div>

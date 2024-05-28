@@ -31,7 +31,7 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
       return [...prev];
     });
 
-    // const response = await fetch(`https://wbt-quizcave.onrender.com/api/v1/result/add-answer/${result}`, requestOptions);
+    // const response = await fetch(`https://wbt-quizcave.onrender.com/api/v1/result/add-answer/${result._id}`, requestOptions);
     // const data = await response.json();
     // if (data.success === true) {
     //   setNext((prev) => prev + 1);
