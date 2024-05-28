@@ -6,7 +6,7 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
           <>
             <div className="text-black font-semibold text-xl flex flex-row justify-between">
               <span>{`${number}) ${Question.question}`}</span>
-              <span className="text-red-500 font-medium font-mono text-lg">({Question?.marks} marks)</span>
+              <span className="text-red-500 font-medium font-mono text-lg">{Question?.marks} {(Question?.marks > 1) ? "marks":"mark"}</span>
             </div>
           </>
         )}
