@@ -48,11 +48,11 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
 
   return (
     <>
-      <Watermark text="Whiteboard Tec" diagonal opacity={0.3} fontSize={35}>
+      <Watermark text="Whiteboard Technology" diagonal opacity={0.3} fontSize={20} gutter={10}>
         <div className="h-[80vh] w-full">
           {Question?.question && (
             <>
-              <div className="text-black font-semibold text-xl flex flex-row justify-between">
+              <div className="text-black font-semibold text-xl flex flex-row justify-between select-none">
                 <span>{`${number}) ${Question.question}`}</span>
                 <span className="text-red-500 font-medium font-mono text-lg">
                   {Question?.marks} {Question?.marks > 1 ? "marks" : "mark"}
@@ -99,11 +99,11 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
               {Question.multipleQuestion.map((option, index) => (
                 <div
                   key={index}
-                  className="grid grid-cols-[30%_70%] w-1/3 items-center mx-10"
+                  className="flex flex-row items-center ml-0 w-full mx-10"
                 >
                   <label
                     htmlFor={index}
-                    className="text-lg text-center font-semibold w-full"
+                    className="text-lg font-semibold w-1/4 text-center select-none"
                   >{`${index + 1}) ${option}`}</label>
                   <input
                     type="text"
@@ -116,7 +116,7 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
                         return prev;
                       })
                     }}
-                    className="border-2 border-gray-300 rounded-lg p-2 my-5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="border-2 w-1/2 border-gray-300 rounded-lg p-2 my-5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
               ))}
@@ -128,7 +128,7 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
                 {Question.mcqOptions.map((option, index) => (
                   <div
                     key={index}
-                    className="flex flex-row w-1/3 items-center justify-center"
+                    className="flex flex-row w-1/3 items-center justify-center select-none"
                   >
                     <input
                       type="radio"
