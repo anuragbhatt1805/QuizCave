@@ -16,6 +16,7 @@ export const CompletedAssessment = ({result, contest}) => {
                 onClick={(e) => {
                     e.preventDefault();
                     alert("You answers are successfully submitted.\nYou will be notified when results are declared")
+                    window.location.reload();
                 }}>Submit</button>
             </div>
             </div>

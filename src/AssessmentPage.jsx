@@ -1,24 +1,63 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Question } from "./components/Question";
 import { CompletedAssessment } from "./components/CompletedAssessment";
 import { Counterdown } from "./components/Counterdown";
 
 export const AssessmentPage = ({contest, result}) => {
-    let questionLength = contest?.questions?.length;
-  while (questionLength > 0) {
-    const randomLength = Math.floor(Math.random() * questionLength);
-    questionLength--;
+  const shuffleQuestions = (questions) => {
+    const shuffledQuestions = [...questions];
+    let currentIndex = shuffledQuestions.length;
 
-    [contest.questions[questionLength], contest.questions[randomLength]] = [
-      contest.questions[randomLength],
-      contest.questions[questionLength],
-    ];
-  }
+    while (currentIndex !== 0) {
+      const randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      const temporaryValue = shuffledQuestions[currentIndex];
+      shuffledQuestions[currentIndex] = shuffledQuestions[randomIndex];
+      shuffledQuestions[randomIndex] = temporaryValue;
+    }
+
+    return shuffledQuestions;
+  };
+
+  const shuffledQuestions = shuffleQuestions(contest?.questions);
 
   const [next, setNext] = useState(0);
   const [quesAppear, setQuestionAppear] = useState(
-    Array.from({ length: contest?.questions?.length }, (x, i) => false)
+    Array.from({ length: contest?.questions?.length }, () => false)
   );
+
+  const handleTabChange = () => {
+    setNext(contest?.questions?.length);
+  };
+
+  const handleContextMenu = (e) => {
+    e.preventDefault();
+  };
+
+  const handleKeyDown = (e) => {
+    if (
+      e.key.startsWith("F") ||
+      e.key === "Escape"
+    ) {
+      e.preventDefault();
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("contextmenu", handleContextMenu);
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("visibilitychange", handleTabChange);
+
+    // Request full screen
+    document.documentElement.requestFullscreen({navigationUI: "hide"});
+
+    return () => {
+      window.removeEventListener("contextmenu", handleContextMenu);
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("visibilitychange", handleTabChange);
+    };
+  }, []);
 
   return (
     <>
@@ -32,7 +71,7 @@ export const AssessmentPage = ({contest, result}) => {
             </div>
           <div className="overflow-y-auto my-5 mx-10">
             <Question
-              Question={contest?.questions[next]}
+              Question={shuffledQuestions[next]}
               number={next + 1}
               setNext={setNext}
               result={result._id}
@@ -57,8 +96,7 @@ export const AssessmentPage = ({contest, result}) => {
               <div className="flex flex-row flex-wrap">
                 {quesAppear.map((appear, index) => {
                   return (
-                    <>
-                      <div
+                      <div key={index}
                         className={`p-3 m-5 w-12 h-12 text-center rounded-full cursor-not-allowed ${
                           index > next
                             ? "text-white bg-slate-400"
@@ -69,7 +107,6 @@ export const AssessmentPage = ({contest, result}) => {
                       >
                         {index + 1}
                       </div>
-                    </>
                   );
                 })}
               </div>
