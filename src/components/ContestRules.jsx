@@ -1,21 +1,24 @@
+import parse from 'html-react-parser';
+
 export const ContestRules = ({ description, rules, start }) => {
   return (
     <>
       <div className="w-1/2 mx-auto border-2 rounded-lg p-3 my-5">
         {
             (description) && (
-                <div className="text-lg my-5">
-                    <div className="text-black text-2xl font-bold">Description</div>
-                    {description}
-                </div>
+              <div className="text-lg my-5">
+                <div className="text-black text-2xl font-bold">Description</div>
+                <div className='mx-8'>{parse(description)}</div>
+              </div>
+            
             )
         }
         {
             (rules) && (
-                <div className="text-lg my-5">
-                    <div className="text-black text-2xl font-bold">Rules & Regulation</div>
-                    {rules}
-                </div>
+              <div className="text-lg my-5">
+              <div className="text-black text-2xl font-bold">Rules & Regulation</div>
+              <div className='mx-10'>{parse(rules)}</div>
+            </div>
             )
         }
         <div className="text-lg">

@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Question } from "./components/Question";
 import { CompletedAssessment } from "./components/CompletedAssessment";
 import { Counterdown } from "./components/Counterdown";
+import parse from 'html-react-parser';
 
 export const AssessmentPage = ({contest, result}) => {
   const shuffleQuestions = (questions) => {
@@ -67,7 +68,7 @@ export const AssessmentPage = ({contest, result}) => {
             <div className="text-black text-xl font-bold my-3">
                 Rules & Regulation
               </div>
-              {contest?.rules}
+              <div className="mx-5">{parse(contest?.rules)}</div>
             </div>
           <div className="overflow-y-auto my-5 mx-10">
             <Question

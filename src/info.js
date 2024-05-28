@@ -1,9 +1,9 @@
 export const contest = {
     "_id": "6654429dac04cb918ac43b3e",
     "name":  "WBT Placement Drive ABC",
-    "description": "A Placement Drive For College ABC final year student conducted by WBT",
+    "description": "<p>A Placement Drive For College ABC final year students was conducted by WBT. This event aimed to provide opportunities for students to secure job placements before graduating. Representatives from various companies participated to interview and recruit eligible candidates.</p>",
     "duration": 5,
-    "rules": "1. New Rule 1\n2. New Rule 2\n3.New Rule 3\n4. New Rule 4",
+    "rules": "<ul style=\"list-style-type: circle;\"><li>Ensure that all electronic devices except the one being used for the assessment are turned off or placed out of reach.</li><li>Do not communicate with any other individual during the assessment period.</li><li>Strictly adhere to the time limit specified for each section or question.</li><li>Properly cite any external sources used, following the institution's guidelines for academic integrity</li></ul>",
     "startDate": "2024-05-29T12:00:00.000Z",
     "endDate": "2024-05-31T12:00:00.000Z",
     "active": true,
