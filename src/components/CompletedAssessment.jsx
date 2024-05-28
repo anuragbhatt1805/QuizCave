@@ -25,7 +25,7 @@ export const CompletedAssessment = ({result, contest}) => {
 
     return (
         <>
-            <div className="flex flex-col justify-center items-center my-20">
+            <div className="flex flex-col justify-center items-center my-20 select-none">
                 <h1 className="text-[#6adb45] text-6xl font-bold text-center font-serif">Congratulations!</h1>
             <svg width="100" height="100" viewBox="0 0 50 50" className="text-[#6adb45] h-80 w-80">
                 <circle cx="25" cy="25" r="20" stroke="currentColor" strokeWidth="2" fill="transparent" className="circle"></circle>
