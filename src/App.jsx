@@ -4,6 +4,10 @@ import { contest, result } from "./info"
 
 function App() {
 
+  useEffect(() => {
+    window.document.title = `WBT - ${contest?.name}`;
+  }, []);
+
   const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
   if (!isDesktop) {
     return (
