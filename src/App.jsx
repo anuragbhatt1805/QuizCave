@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Assessment } from "./Assessment"
 import { contest, result } from "./info"
+import { Analytics } from "@vercel/analytics/react"
 
 function App() {
 
@@ -53,6 +54,7 @@ function App() {
 
   return (
     <>
+      <Analytics/>
       <Assessment contest={contest} result={result} />
     </>
   )
