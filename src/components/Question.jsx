@@ -3,6 +3,48 @@ import { Watermark } from "@hirohe/react-watermark";
 
 export const Question = ({ Question, number, setNext, result, appeared }) => {
   const [answered, setAnswered] = useState(false);
+  const [answer, setAnswer] = useState((Question.type === "multiple") ? Array.from(Question?.multipleQuestion?.length).fill(""): []);
+
+  // console.log(Question);
+
+  const handleSubmit = async () => {
+    const myHeader = new Headers();
+    myHeader.append("Content-Type", "application/json");
+    myHeader.append("Authorization", `Bearer ${localStorage.getItem("access")}`);
+
+    const raw = JSON.stringify({
+      "answer": answer,
+      "question": Question.id,
+    })
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeader,
+      body: raw,
+      redirect: "follow",
+    };
+
+
+    setNext((prev) => prev + 1);
+    appeared((prev) => {
+      prev[number - 1] = answered;
+      return [...prev];
+    });
+
+    // const response = await fetch(`https://wbt-quizcave.onrender.com/api/v1/result/add-answer/${result}`, requestOptions);
+    // const data = await response.json();
+    // if (data.success === true) {
+    //   setNext((prev) => prev + 1);
+    //     appeared((prev) => {
+    //       prev[number - 1] = answered;
+    //       return [...prev];
+    //     });
+    // } else {
+    //   setNext((prev) => prev + 1);
+    // }
+    setAnswered(false);
+    setAnswer([]);
+  }
 
   return (
     <>
@@ -33,6 +75,7 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
                 onChange={(e) => {
                   e.preventDefault();
                   setAnswered(true);
+                  setAnswer([e.target.value]);
                 }}
                 className="border-2 border-gray-300 rounded-lg p-2 w-1/3 my-5"
               />
@@ -45,6 +88,7 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
                 onChange={(e) => {
                   e.preventDefault();
                   setAnswered(true);
+                  setAnswer([e.target.value]);
                 }}
                 className="border-2 border-gray-300 rounded-lg p-2 w-1/3 h-1/3 my-5 mx-10"
               />
@@ -67,6 +111,10 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
                     onChange={(e) => {
                       e.preventDefault();
                       setAnswered(true);
+                      setAnswer((prev) => {
+                        prev[index] = e.target.value;
+                        return prev;
+                      })
                     }}
                     className="border-2 border-gray-300 rounded-lg p-2 my-5 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
@@ -85,9 +133,9 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
                     <input
                       type="radio"
                       name="mcq"
-                      onChange={(e) => {
-                        e.preventDefault();
+                      onClick={() => {
                         setAnswered(true);
+                        setAnswer([option]);
                       }}
                       id={index}
                       className="w-5 h-5 mx-4"
@@ -118,11 +166,7 @@ export const Question = ({ Question, number, setNext, result, appeared }) => {
           className="bg-blue-500 text-white font-bold p-2 rounded-lg m-5 w-32 border-2 hover:border-blue-500 hover:text-blue-700 hover:bg-white"
           onClick={(e) => {
             e.preventDefault();
-            setNext((prev) => prev + 1);
-            appeared((prev) => {
-              prev[number - 1] = answered;
-              return [...prev];
-            });
+            handleSubmit();
           }}
         >
           Save & Next

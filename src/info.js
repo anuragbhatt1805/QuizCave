@@ -19,7 +19,7 @@ export const contest = {
         {
             "_id":"665447a93ec3bcbbee4fbc5d",
             "question": "What is the capital of Nepal?",
-            "questionImage":"src/assets/picture.jpg",
+            // "questionImage":"src/assets/picture.jpg",
             "type":"mcq",
             "mcqOptions": ["Kathmandu", "Pokhara", "Bhaktapur", "Lalitpur"],
             "multipleQuestion":[],
@@ -34,16 +34,16 @@ export const contest = {
             "marks":2
         },
         {
-            "_id":"665447a93ec3bcbbee4fbc5f",
+            "_id":"665447a93ec372bbee4fbc5f",
             "question": "What are newtons Laws of Motion?",
-            "questionImage":"src/assets/picture.jpg",
+            // "questionImage":"src/assets/picture.jpg",
             "type":"long",
             "mcqOptions": [],
             "multipleQuestion":[],
             "marks":5
         },
         {
-            "_id":"665447a93ec3bcbbee4fbc60",
+            "_id":"665447a93ecdda3bcbbee4fbc60",
             "question": "Write Answer for following Questions?",
             "type":"multiple",
             "mcqOptions": [],

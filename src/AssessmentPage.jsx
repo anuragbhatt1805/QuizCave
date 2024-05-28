@@ -5,23 +5,6 @@ import { Counterdown } from "./components/Counterdown";
 import parse from 'html-react-parser';
 
 export const AssessmentPage = ({contest, result}) => {
-  const shuffleQuestions = (questions) => {
-    const shuffledQuestions = [...questions];
-    let currentIndex = shuffledQuestions.length;
-
-    while (currentIndex !== 0) {
-      const randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-
-      const temporaryValue = shuffledQuestions[currentIndex];
-      shuffledQuestions[currentIndex] = shuffledQuestions[randomIndex];
-      shuffledQuestions[randomIndex] = temporaryValue;
-    }
-
-    return shuffledQuestions;
-  };
-
-  const shuffledQuestions = shuffleQuestions(contest?.questions);
 
   const [next, setNext] = useState(0);
   const [quesAppear, setQuestionAppear] = useState(
@@ -72,7 +55,8 @@ export const AssessmentPage = ({contest, result}) => {
             </div>
           <div className="overflow-y-auto my-5 mx-10">
             <Question
-              Question={shuffledQuestions[next]}
+              key={contest?.questions[next]?._id} // Add a unique key prop to the Question component
+              Question={contest?.questions[next]}
               number={next + 1}
               setNext={setNext}
               result={result._id}
